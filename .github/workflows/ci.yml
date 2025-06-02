@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  coding-standards:
+    name: CS, PHPStan, Lint, PSALM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build docker
+        run: make up
+      - name: Run CS check
+        run: make cs-check
+      - name: Run PHPStan
+        run: make phpstan
+      - name: Run PHP Parallel Lint
+        run: make lint
+      - name: Run PSALM
+        run: make psalm
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build docker
+        run: make up
+      - name: Run tests
+        run: make test

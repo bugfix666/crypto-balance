@@ -1,0 +1,205 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Service",
+        "description": "Service",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "local server"
+        }
+    ],
+    "paths": {
+        "/api/v1/operations ": {
+            "post": {
+                "tags": [
+                    "Operations"
+                ],
+                "summary": "List of operations",
+                "operationId": "4032351dad05d96fcc11be692a45923f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "user_uuid"
+                                ],
+                                "properties": {
+                                    "user_uuid": {
+                                        "description": "Uuid of the user",
+                                        "type": "string",
+                                        "example": "85949663-786f-30c5-97e5-2193867f2c32"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/users ": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Users",
+                "operationId": "d5120e417a5a3f090583ef0639f034f4",
+                "responses": {
+                    "200": {
+                        "description": "Successfully response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/wallet/add-balance": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "Add balance",
+                "operationId": "4d46887014b1dd8823cc2f9f00650bfd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "wallet_uuid",
+                                    "amount"
+                                ],
+                                "properties": {
+                                    "wallet_uuid": {
+                                        "description": "Uuid of the wallet",
+                                        "type": "string",
+                                        "example": "85949663-786f-30c5-97e5-2193867f2c32"
+                                    },
+                                    "amount": {
+                                        "description": "Amount to add balance of the wallet",
+                                        "type": "number",
+                                        "example": "123.45"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/wallet/sub-balance": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "Subtract from balance",
+                "operationId": "6ef7fa7b24c45014de0b11ded8e7cab0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "wallet_uuid",
+                                    "amount"
+                                ],
+                                "properties": {
+                                    "wallet_uuid": {
+                                        "description": "Uuid of the wallet",
+                                        "type": "string",
+                                        "example": "85949663-786f-30c5-97e5-2193867f2c32"
+                                    },
+                                    "amount": {
+                                        "description": "Amount to add balance of the wallet",
+                                        "type": "number",
+                                        "example": "123.45"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "Operations",
+            "description": "Operations"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        },
+        {
+            "name": "Wallet",
+            "description": "Wallet"
+        }
+    ]
+}
