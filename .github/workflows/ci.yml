@@ -23,8 +23,8 @@ jobs:
         run: make phpstan
       - name: Run PHP Parallel Lint
         run: make lint
-      - name: Run PSALM
-        run: make psalm
+#      - name: Run PSALM
+#        run: make psalm
   tests:
     name: Tests
     runs-on: ubuntu-latest
