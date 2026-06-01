@@ -6,15 +6,17 @@
     "keywords": ["laravel", "framework"],
     "license": "GPL-3.0-only",
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-bcmath": "*",
         "ext-curl": "*",
         "ext-http": "*",
         "ext-redis": "*",
         "ext-zlib": "*",
+        "bugfix666/crypto-balance-wallet": "^1.0",
         "laravel/framework": "^12.0",
         "laravel/horizon": "^5",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "softinvest/http-response": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3",

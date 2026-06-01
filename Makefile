@@ -27,21 +27,23 @@ start: ## Start docker
 	if [ -d /run/docker.sock ];then \
 	sudo chown ${USER} /run/docker.sock ;\
 	fi
-	docker compose up -d
+	docker compose up -d --remove-orphans
 
 stop: ## Stop docker
 	docker compose down
 
 openapi: ## Build openapi documentation
-	docker exec -i app php artisan l5-swagger:generate
+	docker exec -i app composer openapi
 
 migrate: ## Drop all tables and re-run all migrations
-	docker exec -i app php artisan migrate:fresh --seed
+	docker exec -i app php artisan migrate:fresh --seed --force
 
 buildapp:
 	docker exec -i app rm -rf bootstrap/cache/*.php
+	docker exec -i app git config --global --add safe.directory /www
+ 	# docker exec -i app pecl install opentelemetry && echo 'extension=opentelemetry.so' > /etc/php/8.3/mods-available/opentelemetry.ini && phpenmod -s ALL opentelemetry
 	docker exec -i app composer install
-	docker exec -i app php artisan key:generate
+	docker exec -i app php artisan key:generate --force
 	#docker exec -i app php artisan optimize
 	#docker exec -i app php artisan optimize:clear
 
@@ -70,6 +72,15 @@ lint: ## Run PHP linter
 psalm: ## Run PSALM
 	docker exec -i app composer psalm
 
+validate-composer: ## Run composer validation
+	docker exec -i app composer validate --strict
+
+rector: ## Run rector
+	docker exec -i app composer rector
+
+rector-fix: ## Run fix rector
+	docker exec -i app composer rector-fix
+
 install:
 	make env && \
 	make buildapp && \
@@ -79,6 +90,7 @@ install:
 ide-helper: ## Make ide-helper files
 	docker exec -i app php artisan ide-helper:generate
 	docker exec -i app php artisan ide-helper:models -N
+	docker exec -i app php artisan ide-helper:models -M
 	docker exec -i app php artisan ide-helper:meta
 
 .PHONY: help

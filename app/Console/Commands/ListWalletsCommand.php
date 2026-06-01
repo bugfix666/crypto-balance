@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Http\Resources\UserResource;
-use App\Services\UserService;
+use Bugfix666\CryptoBalanceWallet\Services\UserService;
 use Illuminate\Console\Command;
 
 /**

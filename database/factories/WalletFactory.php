@@ -25,7 +25,7 @@ class WalletFactory extends Factory
     {
         return [
             'uuid' => fake()->unique()->uuid(),
-            'currency' => WalletCurrencyEnum::BTC->value,
+            'currency' => WalletCurrencyEnum::BTC,
             'amount' => 0,
         ];
     }

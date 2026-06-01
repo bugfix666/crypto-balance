@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\HttpResponseController;
 use App\Http\Requests\FindOperationsRequest;
 use App\Http\Resources\OperationResource;
-use App\Services\OperationService;
+use Bugfix666\CryptoBalanceWallet\Services\OperationService;
 use Illuminate\Http\JsonResponse;
 use OpenApi\Attributes as OA;
+use SoftInvest\Http\Controllers\HttpResponseController;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

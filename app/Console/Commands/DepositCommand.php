@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\DTO\BalanceProcessCallbackDTO;
-use App\Enums\OpStateEnum;
-use App\Exceptions\Wallet\InvalidUuidStringException;
-use App\Exceptions\Wallet\ProcessingAmountIsInvalidException;
-use App\Exceptions\Wallet\UnsupportedBlockchainOrCurrencyException;
-use App\Exceptions\Wallet\WalletCurrencyPrecisionNotSetException;
-use App\Exceptions\Wallet\WalletNotFoundException;
-use App\Jobs\BalanceProcessCallbackJob;
-use App\Services\WalletService;
+use Bugfix666\CryptoBalanceWallet\DTO\BalanceProcessCallbackDTO;
+use Bugfix666\CryptoBalanceWallet\Enums\OpStateEnum;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\InvalidUuidStringException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\ProcessingAmountIsInvalidException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\UnsupportedBlockchainOrCurrencyException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\WalletCurrencyPrecisionNotSetException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\WalletNotFoundException;
+use Bugfix666\CryptoBalanceWallet\Jobs\BalanceProcessCallbackJob;
+use Bugfix666\CryptoBalanceWallet\Services\WalletService;
 use Illuminate\Console\Command;
 
 /**
@@ -60,8 +60,8 @@ class DepositCommand extends Command
         for ($i = 0; $i < 100; $i++) {
             // add new
             $operation = $walletService->addBalance(
-                amount: $amount,
-                walletUuid: $walletUuid,
+                amount: (string)$amount,
+                walletUuid: (string)$walletUuid,
                 opState: OpStateEnum::OS_INPROCESS
             );
 

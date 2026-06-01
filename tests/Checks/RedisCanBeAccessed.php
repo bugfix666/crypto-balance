@@ -3,8 +3,10 @@
 namespace Tests\Checks;
 
 use BeyondCode\SelfDiagnosis\Checks\Check;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redis;
+use RedisException;
 
 class RedisCanBeAccessed implements Check
 {
@@ -45,12 +47,25 @@ class RedisCanBeAccessed implements Check
                     return false;
                 }
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->message = $e->getMessage();
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * Tests a redis connection and returns whether the connection is opened or not.
+     *
+     * @param string|null $name
+     * @return bool
+     * @throws RedisException
+     */
+    private function testConnection(string $name = null): bool
+    {
+        $connection = Redis::connection($name)->client();
+        return $connection->isConnected();
     }
 
     /**
@@ -64,18 +79,5 @@ class RedisCanBeAccessed implements Check
         return trans('self-diagnosis::checks.redis_can_be_accessed.message.not_accessible', [
             'error' => $this->message,
         ]);
-    }
-
-    /**
-     * Tests a redis connection and returns whether the connection is opened or not.
-     *
-     * @param string|null $name
-     * @return bool
-     * @throws \RedisException
-     */
-    private function testConnection(string $name = null): bool
-    {
-        $connection = Redis::connection($name)->client();
-        return $connection->isConnected();
     }
 }

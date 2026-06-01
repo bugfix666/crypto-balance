@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Enums\BlockchainEnum;
-use App\Enums\WalletCurrencyEnum;
-use App\Exceptions\Wallet\InvalidUuidStringException;
-use App\Exceptions\Wallet\ProcessingAmountIsInvalidException;
-use App\Exceptions\Wallet\UnsupportedBlockchainOrCurrencyException;
-use App\Exceptions\Wallet\WalletCurrencyPrecisionNotSetException;
-use App\Exceptions\Wallet\WalletNotFoundException;
+use Bugfix666\CryptoBalanceWallet\Enums\BlockchainEnum;
+use Bugfix666\CryptoBalanceWallet\Enums\WalletCurrencyEnum;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\InvalidUuidStringException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\ProcessingAmountIsInvalidException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\UnsupportedBlockchainOrCurrencyException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\WalletCurrencyPrecisionNotSetException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\WalletNotFoundException;
 use App\Models\User;
-use App\Models\Wallet;
-use App\Repositories\Interfaces\PrecisionRepositoryInterface;
-use App\Services\WalletService;
+use Bugfix666\CryptoBalanceWallet\Models\Wallet;
+use Bugfix666\CryptoBalanceWallet\Repositories\Interfaces\PrecisionRepositoryInterface;
+use Bugfix666\CryptoBalanceWallet\Services\WalletService;
 use Illuminate\Database\Seeder;
 
 /**
@@ -50,11 +50,11 @@ class DatabaseSeeder extends Seeder
             /** @var User $user */
 
             $uuid = fake()->unique()->uuid();
-            $wallet = Wallet::factory()->create([
+            $wallet = Wallet::query()->create([
                 'user_id' => $user->id,
                 'uuid' => $uuid,
-                'currency' => WalletCurrencyEnum::BTC->value,
-                'blockchain_id' => BlockchainEnum::BTC->value
+                'currency' => WalletCurrencyEnum::BTC,
+                'blockchain_id' => BlockchainEnum::BTC
             ])->refresh();
             /** @var Wallet $wallet */
 

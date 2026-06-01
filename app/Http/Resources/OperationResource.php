@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use Bugfix666\CryptoBalanceWallet\Repositories\OperationRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -30,7 +31,10 @@ class OperationResource extends JsonResource
         return [
             'uuid' => $this->resource->uuid,
             'op_type' => $this->resource->op_type,
-            'amount' => $this->resource->amount,
+            'amount' => app(OperationRepository::class)->prepareValue(
+                (string)$this->resource->amount,
+                $this->resource->wallet->getPrecision()
+            ),
             'currency' => $this->resource->currency,
             'created_at' => $this->resource->created_at->format('d.m.Y H:i:s'),
         ];

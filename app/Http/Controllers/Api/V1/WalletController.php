@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\HttpResponseController;
 use App\Http\Requests\ChangeBalanceRequest;
-use App\Services\WalletService;
+use Bugfix666\CryptoBalanceWallet\Services\WalletService;
 use Illuminate\Http\JsonResponse;
 use OpenApi\Attributes as OA;
+use SoftInvest\Http\Controllers\HttpResponseController;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

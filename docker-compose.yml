@@ -1,7 +1,7 @@
 services:
   app:
     container_name: app
-    image: appscenter/larasuperdock:latest
+    image: appscenter/larasuperdock:php8.4-dev
     working_dir: /www/
     volumes:
       - ./:/www
@@ -17,8 +17,7 @@ services:
       - network
 
   postgres:
-    container_name: postgres
-    image: postgres:16.4-bullseye
+    image: postgres:18.1-bookworm
     volumes:
       - ./:/www
     environment:
@@ -34,27 +33,6 @@ services:
     restart: always
     ports:
       - "5432:5432"
-    networks:
-      - network
-
-  postgres-test:
-    container_name: postgres-test
-    image: postgres:16.4-bullseye
-    volumes:
-      - ./:/www
-    environment:
-      - POSTGRES_DB=database
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_HOST_AUTH_METHOD=trust
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "user", "-d", "database" ]
-      interval: 10s
-      timeout: 3s
-      retries: 3
-    restart: always
-    ports:
-      - "5433:5432"
     networks:
       - network
 

@@ -13,98 +13,126 @@
 
 namespace App\Models{
 /**
- * 
+ * App\Models\Operation
+ * php version 8.3
  *
+ * @category models
+ * @package CryptoBalance
+ * @author Constantine Bragin <appscenter@proton.me>
+ * @license GPLv3 License
+ * @link https://github.com/appsinvest/crypto-balance
  * @property int $id
  * @property string $uuid
  * @property string $amount
  * @property string $currency
+ * @property int|null $blockchain_id
  * @property int $wallet_id
  * @property int $op_type
  * @property int $op_state
  * @property array<array-key, mixed>|null $data
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \App\Models\User|null $user
- * @property-read \App\Models\Wallet $wallet
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereCurrency($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereData($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereOpState($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereOpType($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereUuid($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation whereWalletId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Operation withoutTrashed()
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read User|null $user
+ * @property-read Wallet $wallet
+ * @method static Builder<static>|Operation newModelQuery()
+ * @method static Builder<static>|Operation newQuery()
+ * @method static Builder<static>|Operation onlyTrashed()
+ * @method static Builder<static>|Operation query()
+ * @method static Builder<static>|Operation whereAmount($value)
+ * @method static Builder<static>|Operation whereBlockchainId($value)
+ * @method static Builder<static>|Operation whereCreatedAt($value)
+ * @method static Builder<static>|Operation whereCurrency($value)
+ * @method static Builder<static>|Operation whereData($value)
+ * @method static Builder<static>|Operation whereDeletedAt($value)
+ * @method static Builder<static>|Operation whereId($value)
+ * @method static Builder<static>|Operation whereOpState($value)
+ * @method static Builder<static>|Operation whereOpType($value)
+ * @method static Builder<static>|Operation whereUpdatedAt($value)
+ * @method static Builder<static>|Operation whereUuid($value)
+ * @method static Builder<static>|Operation whereWalletId($value)
+ * @method static Builder<static>|Operation withTrashed()
+ * @method static Builder<static>|Operation withoutTrashed()
+ * @mixin Eloquent
+ * @mixin \Eloquent
  */
-	class Operation extends \Eloquent {}
+	#[\AllowDynamicProperties]
+	class IdeHelperOperation {}
 }
 
 namespace App\Models{
 /**
- * 
+ * App\Models\User
+ * php version 8.3
  *
+ * @category models
+ * @package CryptoBalance
+ * @author Constantine Bragin <appscenter@proton.me>
+ * @license GPLv3 License
+ * @link https://github.com/appsinvest/crypto-balance
  * @property int $id
  * @property string $uuid
  * @property string $name
  * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Wallet> $wallets
+ * @property-read Collection<int, \App\Models\Wallet> $wallets
  * @property-read int|null $wallets_count
- * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUuid($value)
+ * @method static UserFactory factory($count = null, $state = [])
+ * @method static Builder<static>|User newModelQuery()
+ * @method static Builder<static>|User newQuery()
+ * @method static Builder<static>|User query()
+ * @method static Builder<static>|User whereCreatedAt($value)
+ * @method static Builder<static>|User whereEmail($value)
+ * @method static Builder<static>|User whereEmailVerifiedAt($value)
+ * @method static Builder<static>|User whereId($value)
+ * @method static Builder<static>|User whereName($value)
+ * @method static Builder<static>|User wherePassword($value)
+ * @method static Builder<static>|User whereRememberToken($value)
+ * @method static Builder<static>|User whereUpdatedAt($value)
+ * @method static Builder<static>|User whereUuid($value)
+ * @mixin Eloquent
+ * @mixin \Eloquent
  */
-	class User extends \Eloquent {}
+	#[\AllowDynamicProperties]
+	class IdeHelperUser {}
 }
 
 namespace App\Models{
 /**
  * App\Models\Wallet
+ * php version 8.3
  *
+ * @category models
+ * @package CryptoBalance
+ * @author Constantine Bragin <appscenter@proton.me>
+ * @license GPLv3 License
+ * @link https://github.com/appsinvest/crypto-balance
  * @property int $id
- * @property int $user_id
+ * @property string $uuid
  * @property string $amount
  * @property string $currency
- * @method static Builder|Wallet newModelQuery()
- * @method static Builder|Wallet newQuery()
- * @method static Builder|Wallet query()
- * @method static Builder|Wallet whereAmount($value)
- * @method static Builder|Wallet whereId($value)
- * @method static Builder|Wallet whereSymbol($value)
- * @method static Builder|Wallet whereUserId($value)
+ * @property int|null $blockchain_id
+ * @property int $user_id
+ * @property-read User $user
+ * @method static WalletFactory factory($count = null, $state = [])
+ * @method static Builder<static>|Wallet newModelQuery()
+ * @method static Builder<static>|Wallet newQuery()
+ * @method static Builder<static>|Wallet query()
+ * @method static Builder<static>|Wallet whereAmount($value)
+ * @method static Builder<static>|Wallet whereBlockchainId($value)
+ * @method static Builder<static>|Wallet whereCurrency($value)
+ * @method static Builder<static>|Wallet whereId($value)
+ * @method static Builder<static>|Wallet whereUserId($value)
+ * @method static Builder<static>|Wallet whereUuid($value)
  * @mixin \Eloquent
- * @property string $uuid
- * @property-read \App\Models\User $user
- * @method static \Database\Factories\WalletFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Wallet whereCurrency($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Wallet whereUuid($value)
  */
-	class Wallet extends \Eloquent {}
+	#[\AllowDynamicProperties]
+	class IdeHelperWallet {}
 }
 

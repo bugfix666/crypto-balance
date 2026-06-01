@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Bugfix666\CryptoBalanceWallet\Models\Wallet;
 use Database\Factories\UserFactory;
-use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,10 +21,10 @@ use Illuminate\Support\Carbon;
  * php version 8.3
  *
  * @category models
- * @package  CryptoBalance
- * @author   Constantine Bragin <appscenter@proton.me>
- * @license  GPLv3 License
- * @link     https://github.com/appsinvest/crypto-balance
+ * @package CryptoBalance
+ * @author Constantine Bragin <appscenter@proton.me>
+ * @license GPLv3 License
+ * @link https://github.com/appsinvest/crypto-balance
  * @property int $id
  * @property string $uuid
  * @property string $name
@@ -36,7 +36,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read Collection<int, \App\Models\Wallet> $wallets
+ * @property-read Collection<int, Wallet> $wallets
  * @property-read int|null $wallets_count
  * @method static UserFactory factory($count = null, $state = [])
  * @method static Builder<static>|User newModelQuery()
@@ -51,7 +51,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder<static>|User whereRememberToken($value)
  * @method static Builder<static>|User whereUpdatedAt($value)
  * @method static Builder<static>|User whereUuid($value)
- * @mixin Eloquent
  */
 class User extends Authenticatable
 {
@@ -83,7 +82,7 @@ class User extends Authenticatable
 
     public function wallets(): HasMany
     {
-        return $this->hasMany(\App\Models\Wallet::class, 'user_id', 'id');
+        return $this->hasMany(Wallet::class, 'user_id', 'id');
     }
 
     /**

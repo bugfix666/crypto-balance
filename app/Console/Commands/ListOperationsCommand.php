@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Exceptions\User\UserNotFoundException;
-use App\Exceptions\Wallet\InvalidUuidStringException;
 use App\Http\Resources\OperationResource;
-use App\Services\OperationService;
-use App\Services\UserService;
+use Bugfix666\CryptoBalanceWallet\Exceptions\User\UserNotFoundException;
+use Bugfix666\CryptoBalanceWallet\Exceptions\Wallet\InvalidUuidStringException;
+use Bugfix666\CryptoBalanceWallet\Services\OperationService;
+use Bugfix666\CryptoBalanceWallet\Services\UserService;
 use Illuminate\Console\Command;
 
 /**
@@ -48,7 +48,7 @@ class ListOperationsCommand extends Command
         OperationService $operationService,
         UserService $userService,
     ) {
-        $userUuid = $this->argument('user');
+        $userUuid = (string)$this->argument('user');
 
         if (false === $operationService->isValidUuid($userUuid)) {
             throw new InvalidUuidStringException();
